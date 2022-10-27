@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta content="Chenjie Wu" name="author" />
+    <meta content="Chenjie Wu's Website" name="description" />
+    <title>full stack</title>
+    <link href="#" rel="icon" />
+    <link href="#" rel="apple-touch-icon" />
+    <link href="./css/main.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!--BootStrap Link -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <nav class="navbar navbar-expand-lg bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">My Media List</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/">
+                    Home
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="mb-2">
+              User is
+              <span id="isAuth"> 
+                
+              </span>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <main>
+        <h1>My Media List</h1>
+
+        <div
+          class="alert alert-success alert-dismissible fade show"
+          role="alert"
+          id="messages"
+        >
+          <span id="content"></span>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+
+        <div class="row">
+          <section class="col-md-6"></section>
+          <h2>Login in</h2>
+          <form action="/login" method="post">
+            <div class="m-2">
+              <label class="form-label">
+                User:
+                <input
+                  name="user"
+                  type="email"
+                  class="form-control"
+                  required="true"
+                  value="John"
+                />
+              </label>
+            </div>
+            <div class="m-2">
+              <label class="form-label">
+                Password:
+                <input
+                  name="password"
+                  type="password"
+                  class="form-control"
+                  required="true"
+                  value="JohnHateWeb"
+                />
+              </label>
+            </div>
+          </form>
+        </div>
+      </main>
+      <footer>
+        Made by <a href="https://suiboli314.github.io">Chen</a> with ❤️
+      </footer>
+    </div>
+
+    <script src="./js/client.js"></script>
+    <!--BootStrap JS Link -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
