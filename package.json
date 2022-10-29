@@ -1,9 +1,10 @@
 {
-  "name": "fullstack",
+  "name": "mymedialist",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
+    "start": "npx nodemon ./bin/www.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -11,10 +12,17 @@
   "license": "MIT",
   "devDependencies": {
     "eslint": "^8.25.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "^7.31.9",
     "prettier": "^2.7.1"
   },
   "dependencies": {
-    "eslint-config-prettier": "^8.5.0"
+    "cookie-parser": "^1.4.6",
+    "debug": "^4.3.4",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "mongodb": "4.11",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.20"
   }
 }

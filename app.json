@@ -1,0 +1,6 @@
+{
+  "name": "mymedialist",
+  "description": "A barebones Node.js app using Express 4",
+  "repository": "https://github.com:suiboli314/myMediaList",
+  "keywords": ["node", "express", "heroku", "mongodb"]
+}
