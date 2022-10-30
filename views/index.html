@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MyMediaList</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/css/css.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/jquery-ui.css">
+    <link rel="stylesheet" href="/css/aos.css">
+    <link rel="stylesheet" href="/css/style1.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+
+    <style>
+
+
+        #inventory-list {
+            width: 200px;
+        }
+
+        .inventory-item {
+            display: block;
+            margin: 5px 0px;
+            background-color: #d3e3f8;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="site-wrap">
+
+    <div class="site-mobile-menu">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icon-close2 js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+
+    <header class="site-navbar py-4" style="border-bottom: 1px solid #e3dddd;" role="banner">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-2">
+                    <span class="site-logo"><a href="/" class="h3">MyMediaList<span
+                            class="text-primary">.</span> </a></span>
+                </div>
+                <div class="col-2">
+                    <span class="site-logo"><a href="/resource" class="h4">Resource<span class="text-primary">.</span> </a></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="site-section">
+        <div class="container">
+
+            <div class="row">
+                <!--我的清单列表-->
+                <div class="col-lg-9" id="inventory-list">
+                </div>
+
+                <!--发布清单-->
+                <div class="col-lg-3">
+                    <div class="featured-user  mb-5 mb-lg-0">
+
+                        <div class="">
+                            <form id="worksForm" action="/works/add" enctype="multipart/form-data" method="post"
+                                  class="bg-white">
+
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <label for="name" class="text-black">Title <span
+                                                class="text-danger">*</span></label>
+                                        <select onchange="selectResource()" id="name" name="name" class="form-control">
+                                            <option value="">Please Choose</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <label for="author" class="text-black">Author <span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="author" name="author">
+                                    </div>
+                                </div>
+
+                                <input type="hidden" id="imageUrl" name="imageUrl"/>
+
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <label for="introduce" class="text-black">Ideas <span
+                                                class="text-danger">*</span></label>
+                                        <textarea class="form-control" name="introduce" id="introduce" cols="30"
+                                                  rows="7"></textarea>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div class="form-group row">
+                                <div class="col-lg-12" style="text-align: center">
+                                    <button id="submit" style="width: 100px" type="submit"
+                                            class="btn btn-primary btn-lg"
+                                            onclick="submit()"
+                                    >Publish
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src='http://libs.baidu.com/jquery/1.7.2/jquery.min.js'></script>
+<script src="http://libs.baidu.com/jqueryui/1.9.0/jquery-ui.min.js "></script>
+<script src="/javascripts/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script src="/javascripts/main.js"></script>
+
+<script>
+
+    $(function () {
+        //获取错误信息
+        let message = getQueryString('message')
+        if (message) {
+            confirm(message)
+        }
+        //获取清单列表
+        $.ajax({
+            async: true,
+            error: function (err) {
+                // 出现错误
+                alert("Error");
+            },
+            success: function (data) {
+                // data 就是responseText返回的数据,但是这里是jQuery处理完成之后的数据
+                console.log("Success, data is", data);
+                if (data.state === 'ok') {
+                    worksDoc = ''
+                    data.data.forEach(item => {
+                        worksDoc += (`<div data-id="${item._id}"
+                             class="inventory-item d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
+                            <img class="image" src="/works?url=${item.imageUrl}"/>
+                            <div class="text">
+                                <div><h3 style="display: inline" class="font-weight-light"><a>${item.name}</a></h3>
+                                    <span style="margin-left: 30px"><a href="/authorRelated?author=${item.author}">${item.author}</a></span>
+                                </div>
+                                <div class="text-white mb-3"><span class="text-black-opacity-05"><small>
+                                ${item.introduce}
+                            </small></span>
+                                </div>
+                                <div class="text-white mb-3" style="text-align: right">
+                                    <span class="text-black-opacity-05"><small><span class="sep"></span>${item.createDate}<span
+                                            class="sep">|</span>one day</small></span>
+                                </div>
+                            </div>
+                        </div>`)
+                    })
+                    $('#inventory-list').html(worksDoc)
+                } else {
+                    alert('Error')
+                }
+            },
+            url: "/getWorks",
+            type: "get"
+        })
+
+        //拖动排序
+        $("#inventory-list").sortable({
+            update: function (event, ui) {
+                var idList = $(this).sortable("toArray", {attribute: "data-id"});
+                console.log(idList)
+                $.ajax({
+                    asycn: true,
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify(idList),
+                    dataType: "json",
+                    error: function (err) {
+                        // 出现错误
+                        alert("Error");
+                    },
+                    success: function (data) {
+                        // data 就是responseText返回的数据,但是这里是jQuery处理完成之后的数据
+                        console.log("Success, data is", data);
+                    },
+                    url: "/works/sort",
+                    type: "post"
+                })
+            }
+        });
+
+
+        $("#inventory-list").disableSelection();
+        //select2
+        $("#name").select2();
+
+        //获取资源下拉内容
+        $.ajax({
+            async: true,
+            error: function (err) {
+                // 出现错误
+                alert("Error");
+            },
+            success: function (data) {
+                console.log(data)
+                resources = '<option value="">Please Choose</option>'
+                if (data.state === 'ok') {
+                    data.data.forEach(item => {
+                        resources += `<option value="${item.name}"
+                            author="${item.author}"
+                            imageUrl="${item.imageUrl}">
+                        ${item.name}
+                    </option>`
+                    })
+                    $('#name').html(resources)
+                } else {
+                    alert('Error')
+                }
+            },
+            url: "/getResources",
+            type: "get"
+        })
+    });
+
+    //图片预览
+    $('#preview-image').click(function () {
+        var myFileIcon = $('[name="image"]');
+        myFileIcon.trigger('click');
+    });
+    $('[name="image"]').bind('change', function () {
+        var file = this.files[0];
+        var rdr = new FileReader();
+        rdr.onload = function () {
+            $('#preview-image').attr('src', this.result);
+        };
+        rdr.readAsDataURL(file);
+    });
+
+    //提交清单信息
+    function submit() {
+        var name = $('#name').val();
+        var introduce = $('#introduce').val();
+        if (!name) {
+            alert("Please Choose Title")
+            return;
+        }
+        if (!introduce) {
+            alert("Please Input Introduction")
+            return;
+        }
+        $('#worksForm').submit();
+    }
+
+    //资源搜索
+    function selectResource() {
+        $('#author').val('');
+        $('#imageUrl').val('');
+        $('#preview-image').attr('src', '/image/upload.png')
+        //改变前初始化元素
+        var author = $('#name').find('option:selected').attr("author");
+        if (author) {
+            var imageUrl = $('#name').find('option:selected').attr("imageUrl")
+            $('#author').val(author);
+            $('#imageUrl').val(imageUrl);
+            $('#preview-image').attr('src', `/works?url=${imageUrl}`)
+        }
+    }
+</script>
+
+
+</body>
+</html>

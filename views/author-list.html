@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MyMediaList</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/css/css.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/jquery-ui.css">
+    <link rel="stylesheet" href="/css/aos.css">
+    <link rel="stylesheet" href="/css/style1.css">
+
+    <style>
+
+
+        #inventory-list {
+            width: 200px;
+        }
+
+        .inventory-item {
+            display: block;
+            margin: 5px 0px;
+            background-color: #d3e3f8;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="site-wrap">
+
+    <div class="site-mobile-menu">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icon-close2 js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+
+    <header class="site-navbar py-4" style="border-bottom: 1px solid #e3dddd;" role="banner">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-2">
+                    <span class="site-logo"><a class="h3">Author<span class="text-primary">.</span> </a></span>
+                </div>
+                <div class="col-2">
+                    <span class="site-logo"><a href="/" class="h4">MyMediaList<span
+                            class="text-primary">.</span> </a></span>
+                </div>
+                <div class="col-2">
+                    <span class="site-logo"><a href="/resource" class="h4">Resource<span class="text-primary">.</span> </a></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="site-section">
+        <div class="container">
+
+            <div class="row">
+                <!--我的清单列表-->
+                <div class="col-lg-9" id="inventory-list">
+                    <!--<% for(let i=0;i
+                    <list.length ;i++){ %>
+                        <div data-id="<%=list[i]._id%>"
+                             class="inventory-item d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
+                            <img class="image" src="/works?url=<%=list[i].imageUrl%>"/>
+                            <div class="text">
+                                <div><h3 style="display: inline" class="font-weight-light"><a><%=list[i].name%></a></h3>
+                                    <span style="margin-left: 30px"><a href="/authorRelated?author=<%=list[i].author%>"><%=list[i].author%></a></span>
+                                </div>
+                                <div class="text-white mb-3"><span class="text-black-opacity-05"><small>
+                                <%=list[i].introduce%>
+                            </small></span>
+                                </div>
+                                <div class="text-white mb-3" style="text-align: right">
+                                    <span class="text-black-opacity-05"><small><span class="sep"></span><%=list[i].createDate%><span
+                                            class="sep">|</span>one day</small></span>
+                                </div>
+                            </div>
+                        </div>
+                        <%}%>-->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src='http://libs.baidu.com/jquery/1.7.2/jquery.min.js'></script>
+<script src="http://libs.baidu.com/jqueryui/1.9.0/jquery-ui.min.js "></script>
+<script src="/javascripts/aos.js"></script>
+<script src="/javascripts/main.js"></script>
+
+<script>
+    console.log(getQueryString('author'))
+    //获取清单列表
+    $.ajax({
+        async: true,
+        error: function (err) {
+            // 出现错误
+            alert("Error");
+        },
+        success: function (data) {
+            // data 就是responseText返回的数据,但是这里是jQuery处理完成之后的数据
+            console.log("Success, data is", data);
+            if (data.state === 'ok') {
+                worksDoc = ''
+                data.data.forEach(item => {
+                    worksDoc += (`<div data-id="${item._id}"
+                             class="inventory-item d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
+                            <img class="image" src="/works?url=${item.imageUrl}"/>
+                            <div class="text">
+                                <div><h3 style="display: inline" class="font-weight-light"><a>${item.name}</a></h3>
+                                    <span style="margin-left: 30px"><a href="/authorRelated?author=${item.author}">${item.author}</a></span>
+                                </div>
+                                <div class="text-white mb-3"><span class="text-black-opacity-05"><small>
+                                ${item.introduce}
+                            </small></span>
+                                </div>
+                                <div class="text-white mb-3" style="text-align: right">
+                                    <span class="text-black-opacity-05"><small><span class="sep"></span>${item.createDate}<span
+                                            class="sep">|</span>one day</small></span>
+                                </div>
+                            </div>
+                        </div>`)
+                })
+                $('#inventory-list').html(worksDoc)
+            } else {
+                alert('Error')
+            }
+        },
+        url: `/getWorks?author=${getQueryString('author')}`,
+        type: "get"
+    })
+
+</script>
+
+
+</body>
+</html>
