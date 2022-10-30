@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta content="Chenjie Wu" name="author" />
     <meta content="Chenjie Wu's Website" name="description" />
-    <title>full stack</title>
+    <title>My Media List</title>
     <link href="#" rel="icon" />
     <link href="#" rel="apple-touch-icon" />
     <link href="./css/main.css" rel="stylesheet" />
@@ -56,9 +56,7 @@
             </div>
             <div class="mb-2">
               User is
-              <span id="isAuth"> 
-                
-              </span>
+              <span id="isAuth"> </span>
             </div>
           </div>
         </nav>
@@ -67,7 +65,7 @@
         <h1>My Media List</h1>
 
         <div
-          class="alert alert-success alert-dismissible fade show"
+          class="alert alert-dismissible fade show"
           role="alert"
           id="messages"
         >
@@ -82,17 +80,17 @@
 
         <div class="row">
           <section class="col-md-6"></section>
-          <h2>Login in</h2>
+          <h2>Log in</h2>
           <form action="/login" method="post">
             <div class="m-2">
               <label class="form-label">
-                User:
+                eMail:
                 <input
                   name="user"
                   type="email"
                   class="form-control"
                   required="true"
-                  value="John"
+                  value="John@gmail.com"
                 />
               </label>
             </div>
@@ -107,6 +105,9 @@
                   value="JohnHateWeb"
                 />
               </label>
+            </div>
+            <div class="m-2">
+              <button class="btn btn-primary" type="submit">Login</button>
             </div>
           </form>
         </div>

@@ -3,23 +3,43 @@ import { MongoClient } from "mongodb";
 function myMongoDB() {
   const myDB = {};
   const uri = process.env.MOGO_URI || "mongodb://localhost:27017";
-  const DB_NAME = "fakeUsers";
+  const DB_NAME = "MediaList";
   const COllCECTION_NAME = "users";
 
-  myDB.authenticate = async (user) => {
+  async function getCollection(colName) {
     const client = new MongoClient(uri);
 
+    await client.connect();
+
     const db = client.db(DB_NAME);
-    const usersCol = db.collection(COllCECTION_NAME);
-    console.log("seraching for", user);
+    return [client, db.collection(colName)];
+  }
 
-    // post request sends a form object that holds a input tag with name of user and a input tag with the name of password
-    const res = await usersCol.findOne({ user: user.user });
-    console.log("res", res);
-    // usersCol.insertOne({ user: "Other", password: "JSONRules" });
+  myDB.authenticate = async (user) => {
+    let client, col;
+    try {
+      [client, col] = await getCollection(COllCECTION_NAME);
+      console.log("seraching for", user);
+      // post request sends a form object that holds a input tag with name of user and a input tag with the name of password
+      const res = await col.findOne({ user: user.user });
+      console.log("res", res);
 
-    if (res.password === user.password) return true;
-    return false;
+      if (res !== null && res.password === user.password) return true;
+      return false;
+    } finally {
+      await client.close();
+    }
+  };
+
+  myDB.signUp = async (newPlayer) => {
+    let client, col;
+    try {
+      [client, col] = await getCollection("Players");
+      // usersCol.insertOne({ user: "Other", password: "JSONRules" });
+      return await col.insertOne(newPlayer);
+    } finally {
+      await client.close();
+    }
   };
 
   return myDB;

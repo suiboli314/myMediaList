@@ -2,14 +2,14 @@
   "name": "mymedialist",
   "version": "1.0.0",
   "description": "",
+  "keywords": [],
+  "author": "Chen",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "start": "npx nodemon ./bin/www.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "Chen",
-  "license": "MIT",
   "devDependencies": {
     "eslint": "^8.25.0",
     "eslint-config-prettier": "^8.5.0",
