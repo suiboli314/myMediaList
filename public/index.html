@@ -69,7 +69,7 @@
           role="alert"
           id="messages"
         >
-          <span id="content"></span>
+          <span id="userName"></span>
           <button
             type="button"
             class="btn-close"
@@ -79,37 +79,48 @@
         </div>
 
         <div class="row">
-          <section class="col-md-6"></section>
-          <h2>Log in</h2>
-          <form action="/login" method="post">
-            <div class="m-2">
-              <label class="form-label">
-                eMail:
-                <input
-                  name="user"
-                  type="email"
-                  class="form-control"
-                  required="true"
-                  value="John@gmail.com"
-                />
-              </label>
-            </div>
-            <div class="m-2">
-              <label class="form-label">
-                Password:
-                <input
-                  name="password"
-                  type="password"
-                  class="form-control"
-                  required="true"
-                  value="JohnHateWeb"
-                />
-              </label>
-            </div>
-            <div class="m-2">
-              <button class="btn btn-primary" type="submit">Login</button>
-            </div>
-          </form>
+          <section class="col">
+
+          </section>
+          <section id="signin-section" class="col-md-3" hidden>
+            <h2>Log in</h2>
+            <form action="/signin" method="post">
+              <div class="m-2">
+                <label class="form-label">
+                  eMail:
+                  <input
+                    name="user"
+                    type="email"
+                    class="form-control"
+                    required="true"
+                    value="John@gmail.com"
+                  />
+                </label>
+              </div>
+              <div class="m-2">
+                <label class="form-label">
+                  Password:
+                  <input
+                    name="password"
+                    type="password"
+                    class="form-control"
+                    required="true"
+                    value="JohnHateWeb"
+                  />
+                </label>
+              </div>
+              <section class="row">
+                <div class="col">
+                  <button class="btn btn-primary" type="submit">Login</button>
+                </div>
+                <div class="col">
+                  <button id="signup" class="btn btn-primary" type="button">
+                    Sign Up
+                  </button>
+                </div>
+              </section>
+            </form>
+          </section>
         </div>
       </main>
       <footer>
