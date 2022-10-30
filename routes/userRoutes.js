@@ -31,11 +31,11 @@ router.post("/signup", async (req, res) => {
   console.log("create user", user);
 
   const newUser = {
-    user: user.name,
+    user: user.user,
     password: user.password,
   };
 
-  const mongoRes = await myDB.createPlayer(newUser);
+  const mongoRes = await myDB.signup(newUser);
   console.log("User created", mongoRes);
 
   res.redirect("/?msg=signedup");

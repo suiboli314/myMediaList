@@ -31,12 +31,12 @@ function myMongoDB() {
     }
   };
 
-  myDB.signUp = async (newPlayer) => {
+  myDB.signup = async (newUser) => {
     let client, col;
     try {
-      [client, col] = await getCollection("Players");
+      [client, col] = await getCollection(COllCECTION_NAME);
       // usersCol.insertOne({ user: "Other", password: "JSONRules" });
-      return await col.insertOne(newPlayer);
+      return await col.insertOne(newUser);
     } finally {
       await client.close();
     }
