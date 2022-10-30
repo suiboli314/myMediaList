@@ -1,12 +1,12 @@
 import express from "express";
-
 import myDB from "../db/myMongoDB.js";
 
-const router = express();
+const router = express.Router();
 
-router.get("/login", async (req, res) => {
+router.post("/login", async (req, res) => {
+  console.log("POST login");
   const user = req.body;
-  console.log("POST login", user);
+  console.log("login user: ", user);
 
   // TODO check that we got the correct info
 
@@ -17,6 +17,21 @@ router.get("/login", async (req, res) => {
   } else {
     res.redirect("/?msg=error authenticating");
   }
+});
+
+router.post("/signup", async (req, res) => {
+  const user = req.body;
+  console.log("create user", user);
+
+  const newUser = {
+    user: user.name,
+    password: user.password,
+  };
+
+  const mongoRes = await myDB.createPlayer(newUser);
+  console.log("User created", mongoRes);
+
+  res.redirect("/?msg=signedup");
 });
 
 router.get("/user", (req, res) => {
