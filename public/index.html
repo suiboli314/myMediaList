@@ -69,7 +69,7 @@
           role="alert"
           id="messages"
         >
-          <span id="userName"></span>
+          <span id="authMessage"></span>
           <button
             type="button"
             class="btn-close"
@@ -79,12 +79,10 @@
         </div>
 
         <div class="row">
-          <section class="col">
-
-          </section>
+          <section class="col"></section>
           <section id="signin-section" class="col-md-3" hidden>
             <h2>Log in</h2>
-            <form action="/signin" method="post">
+            <form id="signin_form" action="/signin" method="post">
               <div class="m-2">
                 <label class="form-label">
                   eMail:
@@ -114,8 +112,49 @@
                   <button class="btn btn-primary" type="submit">Login</button>
                 </div>
                 <div class="col">
-                  <button id="signup" class="btn btn-primary" type="button">
+                  <button id="signup" class="btn btn-outline-secondary" type="button">
                     Sign Up
+                  </button>
+                </div>
+              </section>
+            </form>
+
+            <form id="signup_form" action="/signup" method="post" hidden>
+              <div class="m-2">
+                <label class="form-label">
+                  eMail:
+                  <input
+                    name="user"
+                    type="email"
+                    class="form-control"
+                    required="true"
+                    value=""
+                  />
+                </label>
+              </div>
+              <div class="m-2">
+                <label class="form-label">
+                  Password:
+                  <input
+                    name="password"
+                    type="password"
+                    class="form-control"
+                    required="true"
+                    value=""
+                  />
+                </label>
+              </div>
+              <section class="row">
+                <div class="col">
+                  <button class="btn btn-primary" type="submit">Confirm</button>
+                </div>
+                <div class="col">
+                  <button
+                    id="signup_back"
+                    class="btn btn-outline-secondary"
+                    type="button"
+                  >
+                    Back
                   </button>
                 </div>
               </section>

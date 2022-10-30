@@ -18,11 +18,11 @@ router.post("/signin", async (req, res) => {
     // load does not happen before session is saved
     req.session.save(err => {
       if (err) return next(err);
-      res.redirect("/?msg=authenticated");
+      res.redirect("/?auth=true");
     });
     
   } else {
-    res.redirect("/?msg=error authenticating");
+    res.redirect("/?auth=false");
   }
 });
 
