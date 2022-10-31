@@ -62,8 +62,9 @@ function myMongoDB() {
     let client, col;
     try {
       [client, col] = await getCollection(COllCECTION_NAME_USER);
-
-      col.deleteOne({ user: user.user });
+      
+      console.log(user);
+      await col.deleteOne({ user: user.user });
     } finally {
       await client.close();
     }

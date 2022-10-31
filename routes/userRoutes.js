@@ -58,15 +58,16 @@ router.post("/resetPass", async (req, res) => {
   res.redirect("/?reset=true");
 });
 
-router.get("/getUser", (req, res) => {
-  res.json({ user: req.session.user });
+router.get("/deleteThisUser", async (req, res) => {
+  const user = {
+    user: req.session.user,
+  };
+  await myDB.deleteUser(user);
+  res.redirect("/?userDeleted=true");
 });
 
-router.get("/deleteThisUser", (req, res) => {
-  const user = req.body;
-  console.log("delete user %s", user);
-
-  res.redirect("/?userDeleted=");
+router.get("/getUser", (req, res) => {
+  res.json({ user: req.session.user });
 });
 
 router.get("/signout", (req, res, next) => {
