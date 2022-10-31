@@ -48,7 +48,7 @@ function MyClientModule() {
         authMessage.innerHTML = "reset password succeed";
         msgDiv.classList.add("alert-success");
         toggleHidden(false, form_signin, form_reset);
-        signinPanel.hidden = true;
+        signinPanel.hidden = false;
       } else if (params.reset === "false") {
         authMessage.innerHTML = "reset password failed";
         msgDiv.classList.add("alert-danger");

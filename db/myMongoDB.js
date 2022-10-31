@@ -1,8 +1,9 @@
 import { MongoClient } from "mongodb";
+import bcrypt from "bcrypt";
 
 function myMongoDB() {
   const myDB = {};
-  const uri = process.env.MOGO_URI || "mongodb://localhost:27017";
+  const uri = process.env.MONGO_URI || "mongodb://localhost:27017";
   const DB_NAME = "MediaList";
   const COllCECTION_NAME_USER = "users";
 
@@ -23,9 +24,12 @@ function myMongoDB() {
       // post request sends a form object that holds a input tag with name of user and a input tag with the name of password
       const res = await col.findOne({ user: user.user });
       console.log("res", res);
+      console.log(
+        "result: ",
+        res !== null && bcrypt.compareSync(user.password, res.password)
+      );
 
-      if (res !== null && res.password === user.password) return true;
-      return false;
+      return res !== null && bcrypt.compareSync(user.password, res.password);
     } finally {
       await client.close();
     }
@@ -35,6 +39,10 @@ function myMongoDB() {
     let client, col;
     try {
       [client, col] = await getCollection(COllCECTION_NAME_USER);
+      newUser.password = bcrypt.hashSync(
+        newUser.password,
+        bcrypt.genSaltSync()
+      );
       // usersCol.insertOne({ user: "Other", password: "JSONRules" });
       return await col.insertOne(newUser);
     } finally {
@@ -50,7 +58,11 @@ function myMongoDB() {
       // post request sends a form object that holds a input tag with name of user and a input tag with the name of password
       const res = await col.updateOne(
         { user: newUser.user },
-        { $set: { password: newUser.password } }
+        {
+          $set: {
+            password: bcrypt.hashSync(newUser.password, bcrypt.genSaltSync()),
+          },
+        }
       );
       console.log("res", res);
     } finally {
@@ -62,8 +74,8 @@ function myMongoDB() {
     let client, col;
     try {
       [client, col] = await getCollection(COllCECTION_NAME_USER);
-      
-      console.log(user);
+
+      console.log("delete", user);
       await col.deleteOne({ user: user.user });
     } finally {
       await client.close();

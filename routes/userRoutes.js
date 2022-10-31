@@ -44,7 +44,7 @@ router.post("/signup", async (req, res) => {
 
 router.post("/resetPass", async (req, res) => {
   const user = req.body;
-  console.log("create user %s", user);
+  console.log("reset user %s", user);
   if (req.session.user === null || user.password !== user.match) {
     res.redirect("/?reset=false");
     return;
@@ -55,7 +55,16 @@ router.post("/resetPass", async (req, res) => {
     password: user.password,
   };
   const mongoRes = await myDB.resetPass(resetUser);
-  res.redirect("/?reset=true");
+
+  req.session.user = null;
+  req.session.save((err) => {
+    if (err) next(err);
+
+    req.session.regenerate((err) => {
+      if (err) next(err);
+      res.redirect("/?reset=true");
+    });
+  });
 });
 
 router.get("/deleteThisUser", async (req, res) => {
@@ -63,7 +72,18 @@ router.get("/deleteThisUser", async (req, res) => {
     user: req.session.user,
   };
   await myDB.deleteUser(user);
-  res.redirect("/?userDeleted=true");
+
+  req.session.user = null;
+  req.session.save((err) => {
+    if (err) next(err);
+
+    req.session.regenerate((err) => {
+      if (err) next(err);
+      // Todo: unknown how to redirect in GET request
+      console.log("deleted user");
+      res.redirect("/?userDeleted=true");
+    });
+  });
 });
 
 router.get("/getUser", (req, res) => {
