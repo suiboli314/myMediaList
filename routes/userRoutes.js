@@ -16,11 +16,10 @@ router.post("/signin", async (req, res) => {
 
     // save the session before redirection to ensure page
     // load does not happen before session is saved
-    req.session.save(err => {
+    req.session.save((err) => {
       if (err) return next(err);
       res.redirect("/?auth=true");
     });
-    
   } else {
     res.redirect("/?auth=false");
   }
@@ -28,21 +27,46 @@ router.post("/signin", async (req, res) => {
 
 router.post("/signup", async (req, res) => {
   const user = req.body;
-  console.log("create user", user);
+  console.log("create user %s", user);
 
-  const newUser = {
-    user: user.user,
+  if (user.password === user.match) {
+    const newUser = {
+      user: user.user,
+      password: user.password,
+    };
+    const mongoRes = await myDB.signup(newUser);
+    console.log("User created: ", mongoRes);
+    res.redirect("/?signup=true");
+  } else {
+    res.redirect("/?signup=false");
+  }
+});
+
+router.post("/resetPass", async (req, res) => {
+  const user = req.body;
+  console.log("create user %s", user);
+  if (req.session.user === null || user.password !== user.match) {
+    res.redirect("/?reset=false");
+    return;
+  }
+
+  const resetUser = {
+    user: req.session.user,
     password: user.password,
   };
-
-  const mongoRes = await myDB.signup(newUser);
-  console.log("User created", mongoRes);
-
-  res.redirect("/?msg=signedup");
+  const mongoRes = await myDB.resetPass(resetUser);
+  res.redirect("/?reset=true");
 });
 
 router.get("/getUser", (req, res) => {
   res.json({ user: req.session.user });
+});
+
+router.get("/deleteThisUser", (req, res) => {
+  const user = req.body;
+  console.log("delete user %s", user);
+
+  res.redirect("/?userDeleted=");
 });
 
 router.get("/signout", (req, res, next) => {

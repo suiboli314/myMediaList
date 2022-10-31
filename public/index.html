@@ -81,8 +81,9 @@
         <div class="row">
           <section class="col"></section>
           <section id="signin-section" class="col-md-3" hidden>
-            <h2>Log in</h2>
+            
             <form id="signin_form" action="/signin" method="post">
+              <h2>Log in</h2>
               <div class="m-2">
                 <label class="form-label">
                   eMail:
@@ -148,6 +149,18 @@
                   />
                 </label>
               </div>
+              <div class="m-2">
+                <label class="form-label">
+                  Password match:
+                  <input
+                    name="match"
+                    type="password"
+                    class="form-control"
+                    required="true"
+                    value=""
+                  />
+                </label>
+              </div>
               <section class="row">
                 <div class="col">
                   <button class="btn btn-primary" type="submit">Confirm</button>
@@ -155,6 +168,47 @@
                 <div class="col">
                   <button
                     id="signup_back"
+                    class="btn btn-outline-secondary"
+                    type="button"
+                  >
+                    Back
+                  </button>
+                </div>
+              </section>
+            </form>
+
+            <form id="reset_form" action="/resetPass" method="post" hidden>
+              <div class="m-2">
+                <label class="form-label">
+                  Password:
+                  <input
+                    name="password"
+                    type="password"
+                    class="form-control"
+                    required="true"
+                    value=""
+                  />
+                </label>
+              </div>
+              <div class="m-2">
+                <label class="form-label">
+                  Password match:
+                  <input
+                    name="match"
+                    type="password"
+                    class="form-control"
+                    required="true"
+                    value=""
+                  />
+                </label>
+              </div>
+              <section class="row">
+                <div class="col">
+                  <button class="btn btn-primary" type="submit">Confirm</button>
+                </div>
+                <div class="col">
+                  <button
+                    id="resetPass_back"
                     class="btn btn-outline-secondary"
                     type="button"
                   >
