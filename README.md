@@ -2,7 +2,7 @@
 
 ###### Author: Chenjie Wu, Han Deng
 
-###### Page Demo: [suiboli314.github.io](https://suiboli314.github.io)
+###### Page Demo: [heroku](https://mymedialist-5610.herokuapp.com)
 
 ###### Github Link: [My Media List](https://github.com/suiboli314/myMediaList)
 
@@ -70,9 +70,9 @@ To build a platform as a media/knowledge sharing service for the media of intere
 
 ### Other resources
 
-- [Demo on YouTube Channel](https://vimeo.com/suiboli314/)
+- [Demo on YouTube Channel](https://vimeo.com/766216009)
 - [Presentation Link](https://docs.google.com/presentation/d/17xgWzAmyYI3bFgKXpMe8YjLNuaSfFTLYkknFUIzc4xE/edit?usp=sharing)
-- [Design Document]()
+- [Design Document](https://www.figma.com/file/EQ7JiBW9hK2yqKbIqOshlt/myMediaList?node-id=0%3A1)
 - Class Link [CS5610 Web Development Course](https://johnguerra.co/classes/webDevelopment_fall_2022/)
 
 ## Thanks
