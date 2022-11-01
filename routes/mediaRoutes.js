@@ -9,15 +9,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const imageFolder = path.join(__dirname, "public");
 
-router.post("/add", async (req, res) => {
-  const media = req.body;
-  console.log("media:", media);
-
-  if (req.session.user === undefined || req.session.user === null) {
-    res.redirect("../?upload=false");
-    return;
-  }
-});
 
 router.get("/titles", async (req, res) => {
   res.json(await myDB.getMediaTitle());

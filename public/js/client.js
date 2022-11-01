@@ -58,6 +58,18 @@ function MyClientModule() {
         signinPanel.hidden = false;
       }
     }
+
+    if (params.review !== null) {
+      msgDiv.style.display = "block";
+      if (params.review === "true") {
+        authMessage.innerHTML = "record review succeed";
+        msgDiv.classList.add("alert-success");
+      } else if (params.review === "false") {
+        authMessage.innerHTML = "record review failed, please login";
+        msgDiv.classList.add("alert-danger");
+        signinPanel.hidden = false;
+      }
+    }
   }
 
   async function checkIfLoggedIn() {
