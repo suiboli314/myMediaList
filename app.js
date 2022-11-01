@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 import path from "path";
 import session from "express-session";
 import userRouter from "./routes/userRoutes.js";
+import mediaRouter from "./routes/mediaRoutes.js";
 // import cookieParser from "cookie-parser";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -32,6 +33,6 @@ app
   // .use(cookieParser())
   .use(express.static(path.join(__dirname, "public")));
 
-app.use(userRouter);
+app.use("/", userRouter).use("/media", mediaRouter);
 
 export default app;

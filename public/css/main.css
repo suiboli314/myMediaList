@@ -1,3 +1,11 @@
 div#messages {
   display: none;
 }
+
+footer {
+   overflow: hidden;
+   position: fixed;
+   left: auto;
+   right: auto;
+   bottom: 0;
+}

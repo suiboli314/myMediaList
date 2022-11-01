@@ -6,6 +6,7 @@ function myMongoDB() {
   const uri = process.env.MONGO_URI || "mongodb://localhost:27017";
   const DB_NAME = "MediaList";
   const COllCECTION_NAME_USER = "users";
+  const COllCECTION_NAME_MEDIA = "media";
 
   async function getCollection(colName) {
     const client = new MongoClient(uri);
@@ -77,6 +78,61 @@ function myMongoDB() {
 
       console.log("delete", user);
       await col.deleteOne({ user: user.user });
+    } finally {
+      await client.close();
+    }
+  };
+
+  myDB.getMediaTitle = async () => {
+    let client, col;
+    try {
+      [client, col] = await getCollection(COllCECTION_NAME_MEDIA);
+
+      const query = { title: { $exists: true } };
+      const options = {
+        sort: { title: 1 }, // sort returned documents in ascending order by title (A->Z)
+        projection: {
+          _id: 0,
+          author: 1,
+          imagePath: 1,
+          title: 1,
+        }, // Include only the `title` ields in each returned document
+      };
+      const res = await col.find(query, options).toArray();
+      // console.log(res);
+      return res;
+    } finally {
+      await client.close();
+    }
+  };
+
+  myDB.postMediaReview = async (mediaWReview) => {
+    let client, col;
+    try {
+      [client, col] = await getCollection(COllCECTION_NAME_MEDIA);
+
+      const query = {
+        $and: [{ title: mediaWReview.title }, { author: mediaWReview.author }],
+      };
+      const res = await col.updateOne(query, {
+        $push: {
+          reviews: { user: mediaWReview.user, review: mediaWReview.review },
+        },
+      });
+      // console.log(res);
+    } finally {
+      await client.close();
+    }
+  };
+
+  myDB.fetchMediaReviews = async (user) => {
+    let client, col;
+    try {
+      [client, col] = await getCollection(COllCECTION_NAME_MEDIA);
+      const query = { reviews: { $elemMatch: { user: user.user } } };
+      const res = await col.find(query).toArray();
+      console.log("media reviews: ", res);
+      return res;
     } finally {
       await client.close();
     }
