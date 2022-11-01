@@ -45,7 +45,11 @@ router.post("/signup", async (req, res) => {
 router.post("/resetPass", async (req, res) => {
   const user = req.body;
   console.log("reset user %s", user);
-  if (req.session.user === null || user.password !== user.match) {
+  if (
+    req.session.user === undefined ||
+    req.session.user === null ||
+    user.password !== user.match
+  ) {
     res.redirect("/?reset=false");
     return;
   }

@@ -79,145 +79,240 @@
         </div>
 
         <div class="row">
-          <section class="col"></section>
-          <section id="signin-section" class="col-md-3" hidden>
-            
-            <form id="signin_form" action="/signin" method="post">
-              <h2>Log in</h2>
-              <div class="m-2">
-                <label class="form-label">
-                  eMail:
-                  <input
-                    name="user"
-                    type="email"
-                    class="form-control"
-                    required="true"
-                    value="John@gmail.com"
-                  />
-                </label>
-              </div>
-              <div class="m-2">
-                <label class="form-label">
-                  Password:
-                  <input
-                    name="password"
-                    type="password"
-                    class="form-control"
-                    required="true"
-                    value="JohnHateWeb"
-                  />
-                </label>
-              </div>
-              <section class="row">
-                <div class="col">
-                  <button class="btn btn-primary" type="submit">Login</button>
+          <section class="col">
+            <div class="site-section">
+              <div class="row">
+                <!--media list-->
+                <div class="col-lg-9" id="media_list">
                 </div>
-                <div class="col">
-                  <button
-                    id="signup"
-                    class="btn btn-outline-secondary"
-                    type="button"
-                  >
-                    Sign Up
-                  </button>
-                </div>
-              </section>
-            </form>
-
-            <form id="signup_form" action="/signup" method="post" hidden>
-              <div class="m-2">
-                <label class="form-label">
-                  eMail:
-                  <input
-                    name="user"
-                    type="email"
-                    class="form-control"
-                    required="true"
-                    value=""
-                  />
-                </label>
               </div>
-              <div class="m-2">
-                <label class="form-label">
-                  Password:
-                  <input
-                    name="password"
-                    type="password"
-                    class="form-control"
-                    required="true"
-                    value=""
-                  />
-                </label>
-              </div>
-              <div class="m-2">
-                <label class="form-label">
-                  Password match:
-                  <input
-                    name="match"
-                    type="password"
-                    class="form-control"
-                    required="true"
-                    value=""
-                  />
-                </label>
-              </div>
-              <section class="row">
-                <div class="col">
-                  <button class="btn btn-primary" type="submit">Confirm</button>
-                </div>
-                <div class="col">
-                  <button
-                    id="signup_back"
-                    class="btn btn-outline-secondary"
-                    type="button"
-                  >
-                    Back
-                  </button>
-                </div>
-              </section>
-            </form>
-
-            <form id="reset_form" action="/resetPass" method="post" hidden>
-              <div class="m-2">
-                <label class="form-label">
-                  Password:
-                  <input
-                    name="password"
-                    type="password"
-                    class="form-control"
-                    required="true"
-                    value=""
-                  />
-                </label>
-              </div>
-              <div class="m-2">
-                <label class="form-label">
-                  Password match:
-                  <input
-                    name="match"
-                    type="password"
-                    class="form-control"
-                    required="true"
-                    value=""
-                  />
-                </label>
-              </div>
-              <section class="row">
-                <div class="col">
-                  <button class="btn btn-primary" type="submit">Confirm</button>
-                </div>
-                <div class="col">
-                  <button
-                    id="resetPass_back"
-                    class="btn btn-outline-secondary"
-                    type="button"
-                  >
-                    Back
-                  </button>
-                </div>
-              </section>
-            </form>
+            </div>
           </section>
+
+          <div class="col-md-3">
+            <section id="signin-section" hidden>
+              <form id="signin_form" action="/signin" method="post">
+                <h2>Log in</h2>
+                <div class="m-2">
+                  <label class="form-label">
+                    eMail:
+                    <input
+                      class="form-control"
+                      name="user"
+                      type="email"
+                      class="form-control"
+                      required="true"
+                      placeholder="John@gmail.com"
+                    />
+                  </label>
+                </div>
+                <div class="m-2">
+                  <label class="form-label">
+                    Password:
+                    <input
+                      class="form-control"
+                      name="password"
+                      type="password"
+                      class="form-control"
+                      required="true"
+                      placeholder="JohnHateWeb"
+                    />
+                  </label>
+                </div>
+                <section class="row">
+                  <div class="col">
+                    <button class="btn btn-primary" type="submit">Login</button>
+                  </div>
+                  <div class="col">
+                    <button
+                      id="signup"
+                      class="btn btn-outline-secondary"
+                      type="button"
+                    >
+                      Sign Up
+                    </button>
+                  </div>
+                </section>
+              </form>
+
+              <form id="signup_form" action="/signup" method="post" hidden>
+                <div class="m-2">
+                  <label class="form-label">
+                    eMail: <span class="text-danger">*</span>
+                    <input
+                      class="form-control"
+                      name="user"
+                      type="email"
+                      class="form-control"
+                      required="true"
+                      placeholder="John@gmail.com"
+                    />
+                  </label>
+                </div>
+                <div class="m-2">
+                  <label class="form-label">
+                    Password: <span class="text-danger">*</span>
+                    <input
+                      class="form-control"
+                      name="password"
+                      type="password"
+                      class="form-control"
+                      required="true"
+                      placeholder="JohnHateWeb"
+                    />
+                  </label>
+                </div>
+                <div class="m-2">
+                  <label class="form-label">
+                    Password match: <span class="text-danger">*</span>
+                    <input
+                      class="form-control"
+                      name="match"
+                      type="password"
+                      class="form-control"
+                      required="true"
+                      placeholder="JohnHateWeb"
+                    />
+                  </label>
+                </div>
+                <section class="row">
+                  <div class="col">
+                    <button class="btn btn-primary" type="submit">
+                      Confirm
+                    </button>
+                  </div>
+                  <div class="col">
+                    <button
+                      id="signup_back"
+                      class="btn btn-outline-secondary"
+                      type="button"
+                    >
+                      Back
+                    </button>
+                  </div>
+                </section>
+              </form>
+
+              <form id="reset_form" action="/resetPass" method="post" hidden>
+                <div class="m-2">
+                  <label class="form-label">
+                    Password: <span class="text-danger">*</span>
+                    <input
+                      class="form-control"
+                      name="password"
+                      type="password"
+                      class="form-control"
+                      required="true"
+                      placeholder="JohnHateWeb"
+                    />
+                  </label>
+                </div>
+                <div class="m-2">
+                  <label class="form-label">
+                    Password match: <span class="text-danger">*</span>
+                    <input
+                      class="form-control"
+                      name="match"
+                      type="password"
+                      class="form-control"
+                      required="true"
+                      placeholder="JohnHateWeb"
+                    />
+                  </label>
+                </div>
+                <section class="row">
+                  <div class="col">
+                    <button class="btn btn-primary" type="submit">
+                      Confirm
+                    </button>
+                  </div>
+                  <div class="col">
+                    <button
+                      id="resetPass_back"
+                      class="btn btn-outline-secondary"
+                      type="button"
+                    >
+                      Back
+                    </button>
+                  </div>
+                </section>
+              </form>
+            </section>
+
+            <!-- media submit form -->
+            <section class="mb-5 mb-lg-0">
+              <form id="media_form" action="/media/review" method="post">
+                <div class="row">
+                  <br />
+                  <h2>Media Upload</h2>
+                  <div class="col-md-12">
+                    <label for="name" class="text-black">
+                      Title <span class="text-danger">*</span>
+                    </label>
+                    <select id="select_title" name="title" class="form-control">
+                      <option value="">Please Choose</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <label for="author" class="text-black">
+                      Author <span class="text-danger">*</span>
+                    </label>
+                    <input
+                      readonly
+                      type="text"
+                      id="author"
+                      name="author"
+                      class="form-control-plaintext"
+                      value=""
+                    />
+                  </div>
+                </div>
+
+                <div class="mb-3" hidden>
+                  <!-- <label class="form-label">
+                    Media Cover
+                    <input
+                    id="cover"
+                      type="file"
+                      accept="image/*,.heic"
+                      name="cover"
+                      class="form-control"
+                    />
+                  </label> -->
+                  <img id="cover" src="#" alt="cover" />
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <label class="text-black">
+                      !deas
+                      <textarea
+                        name="review"
+                        cols="30"
+                        rows="7"
+                        class="form-control"
+                      ></textarea>
+                    </label>
+                  </div>
+                </div>
+                <div class="row align-items-center text-center">
+                  <div class="col align-self-center">
+                    <button
+                      id="submit"
+                      style="width: 100px"
+                      type="submit"
+                      class="btn btn-primary"
+                    >
+                      Publish
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </section>
+          </div>
         </div>
       </main>
       <footer>
