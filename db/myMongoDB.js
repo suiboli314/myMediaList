@@ -8,6 +8,8 @@ function myMongoDB() {
   const COllCECTION_NAME_USER = "users";
   const COllCECTION_NAME_MEDIA = "media";
 
+// it was impressed that you were using this way to build the list, good job.
+  
   async function getCollection(colName) {
     const client = new MongoClient(uri);
 

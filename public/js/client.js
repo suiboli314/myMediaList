@@ -105,7 +105,9 @@ function MyClientModule() {
       // add delete user button functionality
       const btn_deleteUser = document.getElementById("btn_deleteThisUser");
       btn_deleteUser.onclick = deleteThisUser;
-
+      
+// I really like how you add moji here, clever!
+      
       checkIfSignError();
       fetchTitles();
       fetchReviews(user);

@@ -1,3 +1,7 @@
+/* I'd maybe try to fix the viewing on the page by add some css effects. 
+The display on page is bare minimum for now. */
+
+
 div#messages {
   display: none;
 }
