@@ -9,6 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const imageFolder = path.join(__dirname, "public");
 
+// Overall, it looks great to me, keep it up!
 
 router.get("/titles", async (req, res) => {
   res.json(await myDB.getMediaTitle());
