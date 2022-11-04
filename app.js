@@ -8,6 +8,8 @@ import userRouter from "./routes/userRoutes.js";
 import mediaRouter from "./routes/mediaRoutes.js";
 // import cookieParser from "cookie-parser";
 
+// I think it'd be better to remove the unused lines
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 

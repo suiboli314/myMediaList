@@ -3,6 +3,8 @@ import myDB from "../db/myMongoDB.js";
 
 const router = express.Router();
 
+// Awesome implementation!
+
 router.post("/signin", async (req, res) => {
   console.log("POST signin");
   const user = req.body;
