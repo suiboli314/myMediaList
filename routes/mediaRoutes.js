@@ -43,6 +43,8 @@ router.get("/fetchReviews", async (req, res) => {
   res.json(await myDB.fetchMediaReviews(user));
 });
 
+// Probably also remove these codes
+
 /* 
 router.post("/add", async (req, res) => {
   const media = req.body;
