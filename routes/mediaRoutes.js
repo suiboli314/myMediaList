@@ -14,6 +14,7 @@ router.get("/titles", async (req, res) => {
   res.json(await myDB.getMediaTitle());
 });
 
+// I love how you manage to use query parameters here
 router.post("/review", async (req, res) => {
   console.log("review user ", req.session.user);
   if (req.session.user === undefined || req.session.user === null) {
